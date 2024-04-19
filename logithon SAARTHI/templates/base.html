@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nav-Bar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="navbar">
+        <div>
+          <a href="#" class="title" style="font-size: larger;font-family: Arial, Helvetica, sans-serif;">DataMorph</a>
+        </div>
+        <div class="right-links">
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="chatbox__button">
+          <button id="toggleButton"><img src="./images/chatbox-icon.svg" /></button>
+        </div>
+</div>
+<div class="container">
+    <div class="chatbox">
+        <div class="chatbox__support">
+            <div class="chatbox__header">
+                <div class="chatbox__image--header">
+                    <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="image">
+                </div>
+                <div class="chatbox__content--header">
+                    <h4 class="chatbox__heading--header">Chat support</h4>
+                    <p class="chatbox__description--header">Hi. My name is Sam. How can I help you?</p>
+                </div>
+            </div>
+            <div class="chatbox__messages" id="chat-messages">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <div class="chatbox__footer">
+                <form id="chat-form">
+                    <input type="text" id="answer" name="answer" placeholder="Write a message...">
+                    <button type="submit" class="chatbox_send--footer send_button">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <input type="file" id="fileInput" class="add-files-input" style="display: none;co">
+    <label for="fileInput" class="add-files-button">
+        <i class="fas fa-upload" style="color"></i> Add Files
+    </label>
+</div>
+<script>
+    // JavaScript to trigger file input click
+    document.getElementById('addFilesButton').addEventListener('click', function() {
+        document.getElementById('fileInput').click();
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const chatForm = document.getElementById('chat-form');
+        const chatMessages = document.getElementById('chat-messages');
+
+        chatForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            const answerInput = document.getElementById('answer');
+            const answer = answerInput.value.trim(); // Get the value of the answer input field
+
+            if (answer !== '') {
+                // Create a new message element for the user's message
+                const userMessageElement = document.createElement('div');
+                userMessageElement.classList.add('message', 'user-message');
+                userMessageElement.innerText = `You: ${answer}`;
+
+                // Append the user's message to the chat window
+                chatMessages.appendChild(userMessageElement);
+
+                // Clear the input field
+                answerInput.value = '';
+
+                // Simulate bot response
+                const botMessageElement = document.createElement('div');
+                botMessageElement.classList.add('message', 'bot-message');
+                botMessageElement.innerText = `Sam: Hello! How can I assist you?`;
+
+                // Append the bot's response to the chat window after a delay to simulate processing
+                setTimeout(() => {
+                    chatMessages.appendChild(botMessageElement);
+                }, 1000);
+            }
+        });
+    });
+</script>
+</body>
+</html>
