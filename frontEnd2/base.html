@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nav-Bar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
 </head>
 <body>
 <div class="navbar">
-        <div>
-          <a href="#" class="title">Your Title</a>
+        <div>   
+          <a href="#" class="title" style="font-size: larger;font-family: Arial, Helvetica, sans-serif;">DataMorph</a>
         </div>
         <div class="right-links">
           <a href="#">Home</a>
@@ -40,13 +41,13 @@
                 <button class="chatbox__send--footer send__button">Send</button>
             </div>
         </div>
-        <!-- <div class="chatbox__button">
-            <button><img src="./images/chatbox-icon.svg" /></button>
-        </div> -->
     </div>
+    <!-- Updated Add Files button -->
+    <input type="file" id="fileInput" class="add-files-input" style="display: none;">
+    <label for="fileInput" class="add-files-button">
+        <i class="fas fa-upload"  style="color: black;padding: 5px;"></i> Add Files
+    </label>
 </div>
-
     <script src="./app.js"></script>
-
 </body>
 </html>
