@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from chatbot import load_responses, chatbot
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
@@ -14,21 +14,23 @@ def get_response():
         user_message = request.json['answer']
 
         # Process user's message and get bot's response
-        bot_responses = load_responses("my.csv")
+        bot_responses = load_responses(r"C:\WEB DEVELOPMENT\LogiTHON-SAARTHI\logithon SAARTHI\my.csv")
+        print("Bot Responses:", bot_responses)
         bot_response = chatbot(bot_responses, user_message)
-        print(bot_response)
+        print("Bot Response:", bot_response)
 
-        # Concatenate the bot's response with the additional statement
-        response_with_statement = f"{bot_response}"
-
-        # Send back the bot's response with the additional statement
-        return {'response': response_with_statement}
+        # Send back the bot's response
+        return jsonify({'response': bot_response})
 
     except KeyError:
-        return {'error': "Invalid request format. 'answer' key not found."}
+        error_message = "Invalid request format. 'answer' key not found."
+        print("Error:", error_message)
+        return jsonify({'error': error_message}), 400
 
     except Exception as e:
-        return {'error': str(e)}
+        error_message = "An error occurred: " + str(e)
+        print("Error:", error_message)
+        return jsonify({'error': error_message}), 500
 
 if __name__ == '__main__':
     app.run(debug=False)  # Turn off debug mode for production
